@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=3.0"
+    />
+    <title>당근마켓</title>
+
+    <link rel="stylesheet" href="css/home.css"/>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+<header>
+    <div>
+        <img
+                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/header/logo-basic-24b18257ac4ef693c02233bf21e9cb7ecbf43ebd8d5b40c24d99e14094a44c81.svg"
+        />
+    </div>
+    <div class="nav_right">
+        <div class="logins">
+            <div class="login" sec:authorize="!isAuthenticated()">
+                <button type="button" onclick="location.href='/user/login'">
+                    로그인
+                </button>
+            </div>
+            <div class="logoutmenu" sec:authorize="isAuthenticated()">
+                <div class="item">
+                    <a th:href="@{/mypage}">
+                        <!-- 마이페이지로 이동하는 링크를 추가 -->
+                        <span sec:authentication="principal.nickname"></span>
+                    </a>
+                    &nbsp<span>님</span>
+                    <span
+                            class="myProvider"
+                            style="display: none"
+                            th:text="${#authentication.getPrincipal().getUser().getProvider()}"
+                    ></span>
+                </div>
+            </div>
+
+            <div class="item" sec:authorize="isAuthenticated()">
+                <form
+                        action="/"
+                        name="logoutForm"
+                        method="post"
+                        onSubmit="return false"
+                        style="margin: 0px; padding: 0px"
+                >
+                    <button
+                            onclick="localLogout()"
+                            style="background-color: white; border: 0px; outline: none"
+                    >
+                        로그아웃
+                    </button>
+                </form>
+            </div>
+        </div>
+        <script>
+function localLogout() {
+    var logoutForm = document.getElementsByName('logoutForm')[0];
+    logoutForm.submit();
+}
+
+
+        </script>
+
+        <div id="open" onclick="openNav()">
+            <img
+                    src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/mobile/header/icon-search-41b697063705e11ebae23d1778ef19cce46d21d878e0ef2a770ab8a563148aff.svg"
+            />
+        </div>
+    </div>
+    <nav id="nav">
+        <section>
+            <input type="text" placeholder="상품,지역을 검색해보세요"/>
+            <span style="font-weight: bolder">추천</span>
+            <p>키즈카페</p>
+            <p>인천 마우스</p>
+            <p>분당 유모차</p>
+            <p>부산 책상</p>
+            <p>홍대 쇼파</p>
+            <br/>
+            <p>죽전 자전거</p>
+            <a href="#" onclick="closeNav()">닫기</a>
+        </section>
+
+        <div class="line"></div>
+
+        <div>
+            <h1>우리 동네 중고거래</h1>
+            <h3>동네 주민들과 가깝고 따뜻한 거래를 지금 경험해보세요</h3>
+            <button type="button" name="button">당근마켓 앱 다운받기</button>
+        </div>
+    </nav>
+
+    <script type="text/javascript">
+        function openNav() {
+          document.getElementById("open").style.display = "none";
+          document.getElementById("nav").style.display = "block";
+        }
+
+        function closeNav() {
+          document.getElementById("nav").style.display = "none";
+          document.getElementById("open").style.display = "block";
+        }
+
+
+    </script>
+</header>
+
+<main>
+    <section>
+        <h1>당신 근처의<br/>당근마켓</h1>
+        <h3>
+            중고 거래부터 동네 정보까지, 이웃과 함께해요.<br/>
+            가깝고 따뜻한 당신의 근처를 만들어요.
+        </h3>
+    </section>
+
+    <img
+            src="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/mobile/2x/image-top-440be5c4a4b2c7f2f6f5fc8d41f37a646ebdbbcfdd97613e86ef6784573c901a.png"
+    />
+</main>
+
+<article class="first">
+    <section>
+        <h1>우리동네<br/>중고 직거래 마켓</h1>
+        <h3>
+            동네 주민들과 가깝고 따뜻한 거래를<br/>
+            지금 경험해보세요.
+        </h3>
+    </section>
+
+    <div>
+        <button type="button" id="postview" name="button" onclick="location.href='/post/list'">인기매물 보기</button>
+        <br/>
+        <button type="button" name="button">믿을 수 있는 중고거래</button>
+    </div>
+
+    <img
+            src="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/mobile/image-1-78cecbae525ff615d0d3994dfd67cff0da7dc56303e27a64ee9a90185700e38b.png"
+    />
+</article>
+
+<article class="second">
+    <section>
+        <h1>이웃과 함께 하는 <br/>동네생활</h1>
+        <h3>
+            우리 동네의 다양한 이야기를<br/>
+            이웃과 함께 나누어요.
+        </h3>
+    </section>
+
+    <img
+            src="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/mobile/image-2-66996393fc749a1bc4c20c65bd11910b73663fea91509e2598c95d23e0e050ec.png"
+    />
+</article>
+
+<article class="third">
+    <section>
+        <h1>내 근처에서 찾는<br/>동네가게</h1>
+        <h3>
+            동네 주민들과 가깝고 따뜻한 거래를<br/>
+            지금 경험해보세요.
+        </h3>
+    </section>
+
+    <div>
+        <button type="button" name="button">당근마켓 동네가게 찾기</button>
+    </div>
+
+    <img
+            src="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/mobile/image-3-12049b3b42f788be681f13f78d9698e8a3b98b48370b07c3e47efdc56cf79b5c.png"
+    />
+</article>
+
+<article class="products">
+    <h1>중고거래 인기매물</h1>
+
+    <div>
+        <section>
+            <div>
+                <img
+                        src="https://dnvefa72aowie.cloudfront.net/origin/article/202107/38b1a43340e9aabdb474da1ab0d501f95df9d8e5c3fdac48f1e78dd9d9bf6758.webp?q=82&s=300x300&t=crop"
+                />
+                <h2>자전거</h2>
+                <h3>120,000원</h3>
+                <h4>사랑시 고백구 행복동</h4>
+                <small>관심 55 채팅 91</small>
+            </div>
+
+            <div>
+                <img
+                        src="https://dnvefa72aowie.cloudfront.net/origin/article/202107/ea06fd0f1a31a9217a87e84e6dc1840b9e87742068621bdd8cc5955258ecb334.webp?q=82&s=300x300&t=crop"
+                />
+                <h2>공기청정기</h2>
+                <h3>250,000원</h3>
+                <h4>사랑시 고백구 행복동</h4>
+                <small>관심 55 채팅 91</small>
+            </div>
+        </section>
+
+        <section>
+            <div>
+                <img
+                        src="https://dnvefa72aowie.cloudfront.net/origin/article/202107/38b1a43340e9aabdb474da1ab0d501f95df9d8e5c3fdac48f1e78dd9d9bf6758.webp?q=82&s=300x300&t=crop"
+                />
+                <h2>자전거</h2>
+                <h3>120,000원</h3>
+                <h4>사랑시 고백구 행복동</h4>
+                <small>관심 55 채팅 91</small>
+            </div>
+
+            <div>
+                <img
+                        src="https://dnvefa72aowie.cloudfront.net/origin/article/202107/ea06fd0f1a31a9217a87e84e6dc1840b9e87742068621bdd8cc5955258ecb334.webp?q=82&s=300x300&t=crop"
+                />
+                <h2>공기청정기</h2>
+                <h3>250,000원</h3>
+                <h4>사랑시 고백구 행복동</h4>
+                <small>관심 55 채팅 91</small>
+            </div>
+        </section>
+
+        <section>
+            <div>
+                <img
+                        src="https://dnvefa72aowie.cloudfront.net/origin/article/202107/38b1a43340e9aabdb474da1ab0d501f95df9d8e5c3fdac48f1e78dd9d9bf6758.webp?q=82&s=300x300&t=crop"
+                />
+                <h2>자전거</h2>
+                <h3>120,000원</h3>
+                <h4>사랑시 고백구 행복동</h4>
+                <small>관심 55 채팅 91</small>
+            </div>
+
+            <div>
+                <img
+                        src="https://dnvefa72aowie.cloudfront.net/origin/article/202107/ea06fd0f1a31a9217a87e84e6dc1840b9e87742068621bdd8cc5955258ecb334.webp?q=82&s=300x300&t=crop"
+                />
+                <h2>공기청정기</h2>
+                <h3>250,000원</h3>
+                <h4>사랑시 고백구 행복동</h4>
+                <small>관심 55 채팅 91</small>
+            </div>
+        </section>
+    </div>
+
+    <a href="#">인기매물 더 보기</a>
+</article>
+
+<footer>
+    <div>
+        <section>
+            <a href="#" style="color: white">믿을 수 있는 중고거래</a>
+            <a href="#" style="color: white">자주 묻는 질문</a>
+        </section>
+
+        <section>
+            <a href="#" style="color: white">광고주센터</a>
+            <a href="#">동네가게</a>
+        </section>
+
+        <section>
+            <a href="#">회사소개</a>
+            <a href="#">채용</a>
+        </section>
+
+        <section>
+            <a href="#">이용약관</a>
+            <a href="#">개인정보처리방침</a>
+        </section>
+        <a href="#">위치기반서비스 이용약관</a>
+    </div>
+
+    <div>
+        <h5>고객문의 cs@daangnservice.com</h5>
+        <h5>제휴문의 contact@daangn.com</h5>
+        <h5>지역광고 ad@daangn.com</h5>
+        <h5>PR문의 pr@daangn.com</h5>
+    </div>
+
+    <div>
+        <p>
+            서울특별시 구로구 디지털로 30길 28 609호<br/>
+            사업자 등록번호 : 375-87-00088<br/>
+            직업정보제공사업 신고번호 : J1200020200016
+        </p>
+    </div>
+
+    <div>
+        <img
+                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-facebook-0563f4a93852d073b41f13b8bcabb03d47af3bb3a6755cdfedd8a73686c7f18c.svg"
+        />
+
+        <img
+                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-instagram-2f6c88a461597907c114b7ce28eab053fcae791ed26417915fefb6f7c9f95756.svg"
+        />
+
+        <img
+                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-blog-e1b0d512d1766a6962ec5bbb5b0803d2a6a9c55ad97db5ba9eebb76013caceba.svg"
+        />
+
+        <img
+                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-global-2f53678b428ec623cefd07a90dd7777f3e55fc0433918f645d7d75ace6ff1fc3.png"
+        />
+    </div>
+
+    <small>©Danggeun Market Inc.</small>
+</footer>
+</body>
+<script>
+    document.getElementById('postview').addEventListener('click', function(){
+    location.href='/post/list'})
+
+
+</script>
+>
+</html>

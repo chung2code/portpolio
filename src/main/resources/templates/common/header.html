@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/common/header.css">
+
+
+</head>
+<body>
+<header th:fragment="header">
+    <div>
+        <img
+                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/header/logo-basic-24b18257ac4ef693c02233bf21e9cb7ecbf43ebd8d5b40c24d99e14094a44c81.svg"
+        />
+    </div>
+    <div class="nav_right">
+        <div class="logins">
+            <div class="login" sec:authorize="!isAuthenticated()">
+                <button type="button" onclick="location.href='/user/login'">
+                    로그인
+                </button>
+            </div>
+            <div class="logoutmenu" sec:authorize="isAuthenticated()">
+                <div class="item">
+                    <a th:href="@{/mypage}">
+                        <!-- 마이페이지로 이동하는 링크를 추가 -->
+                        <span sec:authentication="principal.nickname"></span>
+                    </a>
+                    &nbsp<span>님</span>
+                    <span
+                            class="myProvider"
+                            style="display: none"
+                            th:text="${#authentication.getPrincipal().getUser().getProvider()}"
+                    ></span>
+                </div>
+            </div>
+
+            <div class="item">
+                <form
+                        action="/logout"
+                        name="logoutForm"
+                        method="post"
+                        onSubmit="return false"
+                        style="margin: 0px; padding: 0px"
+                >
+                    <button
+                            onclick="localLogout()"
+                            style="background-color: white; border: 0px; outline: none"
+                    >
+                        로그아웃
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="open" onclick="openNav()">
+            <img
+                    src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/mobile/header/icon-search-41b697063705e11ebae23d1778ef19cce46d21d878e0ef2a770ab8a563148aff.svg"
+            />
+        </div>
+    </div>
+    <nav id="nav">
+        <section>
+            <input type="text" placeholder="상품,지역을 검색해보세요" />
+            <span style="font-weight: bolder">추천</span>
+            <p>키즈카페</p>
+            <p>인천 마우스</p>
+            <p>분당 유모차</p>
+            <p>부산 책상</p>
+            <p>홍대 쇼파</p>
+            <br />
+            <p>죽전 자전거</p>
+            <a href="#" onclick="closeNav()">닫기</a>
+        </section>
+
+        <div class="line"></div>
+
+        <div>
+            <h1>우리 동네 중고거래</h1>
+            <h3>동네 주민들과 가깝고 따뜻한 거래를 지금 경험해보세요</h3>
+            <button type="button" name="button">당근마켓 앱 다운받기</button>
+        </div>
+    </nav>
+
+    <script type="text/javascript">
+        function openNav() {
+          document.getElementById("open").style.display = "none";
+          document.getElementById("nav").style.display = "block";
+        }
+
+        function closeNav() {
+          document.getElementById("nav").style.display = "none";
+          document.getElementById("open").style.display = "block";
+        }
+      </script>
+</header>
+
+
+</body>
+</html>

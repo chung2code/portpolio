@@ -1,0 +1,198 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@900&display=swap");
+@font-face {
+  font-family: "DNFBitBitv2";
+  font-style: normal;
+  font-weight: 400;
+  src: url("//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf")
+    format("opentype");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0px solid silver;
+  outline: none;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+img {
+  width: 100px;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  letter-spacing: 0.1px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #444;
+}
+
+h4,
+h5,
+h6 {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #444;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+h2 {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  line-height: 2rem;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1rem;
+  line-height: 2rem;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+h4 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+h5 {
+  font-size: 0.9rem;
+  line-height: 1.8rem;
+  text-transform: uppercase;
+}
+
+h6 {
+  font-size: 0.85rem;
+  color: black;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+}
+
+span {
+  font-size: 0.9rem;
+}
+
+a:link {
+  color: black;
+  text-transform: uppercase;
+}
+
+a:visited {
+  color: black;
+  text-transform: uppercase;
+}
+
+a:active {
+  color: black;
+  text-transform: uppercase;
+}
+
+a:hover {
+  color: black;
+  text-transform: uppercase;
+}
+
+li {
+  list-style: none;
+}
+
+input {
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+footer {
+  min-width: 400px;
+  height: 700px;
+  text-align: left;
+  background: #848484;
+  padding: 40px;
+
+}
+
+footer > * {
+  width: 300px;
+  margin: 20px 0;
+}
+
+footer > :nth-child(1) section {
+  display: flex;
+  text-align: left;
+
+}
+
+footer > :nth-child(1) a {
+  display: block;
+  line-height: 2rem;
+  color: lightgray;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: "DNFBitBitv2";
+}
+
+footer > :nth-child(1) a:hover {
+  text-decoration: underline;
+}
+
+footer > :nth-child(1) a::after {
+  content: "|";
+  margin: 0 10px;
+}
+
+footer > :nth-child(1) section > :last-child::after {
+  content: "";
+}
+
+footer > :nth-child(1) > :last-child::after {
+  content: "";
+}
+
+footer p {
+  font-size: 0.85rem;
+  line-height: 1.8rem;
+}
+
+footer > :nth-child(4) {
+  display: flex;
+  justify-content: space-around;
+}
+
+footer > :nth-child(4) img {
+  width: 25px;
+}
+
+@media screen and (min-width: 800px) {
+  .products {
+    margin: 0 auto;
+    height: 1500px;
+  }
+
+  .products section {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 1000px;
+    cursor: pointer;
+  }
+
+  .products section div img {
+    width: 100%;
+  }
+}

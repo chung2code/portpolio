@@ -1,0 +1,312 @@
+/* 헤더 */
+@charset "UTF-8";
+
+*,
+*::before *::after {
+  margin: 0px;
+  padding: 0px;
+  outline: none;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 400;
+  min-height: 100%;
+  min-width: 100%;
+  /*width: 1920px;*/
+
+  display: inline;
+}
+section,
+article,
+aside,
+footer,
+header,
+nav,
+hgroup {
+  display: block;
+}
+
+ul,
+ol,
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  list-style: none;
+}
+input:focus {
+  outline: none;
+}
+div {
+  display: block;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  outline: inherit;
+}
+#wrap > .container {
+  background-color: #ffffff;
+  width: 100%;
+  height: 64px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  max-width: 100vw;
+  z-index: 999;
+}
+#wrap > .container > .header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+
+  width: 100%;
+  justify-content: space-around;
+  position: relative;
+  align-items: center;
+}
+
+.mainlogo {
+  margin-right: 4rem;
+}
+
+nav {
+  display: flex;
+}
+nav li a {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-right: 3rem;
+  display: flex;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rightform {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  line-height: 4;
+  position: relative;
+}
+
+.rightform .input {
+  height: 40px;
+  line-height: 28px;
+  padding: 0 1rem;
+  width: 100%;
+  padding-left: 2.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  outline: none;
+  background-color: #fc934d;
+  color: #0d0c22;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.input::placeholder {
+  color: #ffffff;
+}
+
+.rightform .icon {
+  position: absolute;
+  left: 1rem;
+  fill: #ffffff;
+  width: 1rem;
+  height: 4rem;
+}
+
+.rightform form {
+  display: flex;
+  justify-content: center;
+  padding-right: 0%;
+}
+
+.login a {
+  font-size: large;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.logoutmenu {
+  display: flex;
+  line-height: 5px;
+}
+.item span {
+  position: relative;
+  top: 5px;
+  font-size: medium;
+  font-weight: bold;
+}
+
+/* 메인 */
+/* 사이드 메뉴바 스타일 */
+
+.nav_main {
+  position: absolute;
+  top: 45%;
+  bottom: 50%;
+  left: 20px;
+  transform: translate(-50%, -50%);
+  max-height: 100vh;
+  height: 1050px;
+  width: 30px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.nav_main a,
+.nav_main label {
+  display: block;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #989898;
+  background-color: #f1f1f1;
+  -webkit-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in;
+  border: 1px solid #d7d7d7;
+}
+.nav_main a:focus,
+.nav a:hover,
+.nav_main label:focus,
+.nav_main label:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: #fc934d;
+}
+.nav_main a:focus,
+.nav_main a:hover {
+  background: #fc934d;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.nav_main label {
+  display: block;
+  cursor: pointer;
+  -webkit-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in;
+  height: 100px;
+  text-align: center;
+  line-height: 5;
+  font-size: 18px;
+  font-weight: bold;
+}
+.nav_main a {
+  display: block;
+  cursor: pointer;
+  -webkit-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in;
+  height: 100px;
+  text-align: center;
+  line-height: 5;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.group-list {
+  height: 100%;
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.5s ease-in-out;
+  transition: max-height 0.5s ease-in-out;
+}
+.group-list a {
+  height: 30px !important;
+  line-height: 30px !important;
+  text-decoration: none;
+  background: #ff6f0f;
+  color: #fff;
+  font-size: 16px !important;
+}
+
+.navlist input[type="checkbox"]:checked + label + ul {
+  max-height: 1000px;
+}
+
+/* 사이드바 끝 */
+
+.main {
+  height: 1000px;
+  margin-top: 100px;
+  width: 1200px;
+  margin-left: 200px;
+}
+
+
+.main > .contents {
+  border: 1px solid black;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.profile {
+  line-height: 25;
+  margin-left: 50px;
+}
+
+.profile_name {
+  line-height: 7;
+  font-size: x-large;
+}
+
+/* 게시물영역 */
+.list {
+  display: contents;
+}
+table {
+  width: 100%;
+  text-align: left;
+  margin-top: 20px;
+
+}
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 게시물영역끝 */
+
+/* 푸터 */
+footer {
+  background-color: #ffffff;
+  color: black;
+  padding-top: 64px;
+  line-height: 1.5;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+footer > ul {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  list-style-type: disc;
+}
+footer > div > .foot_sct2 {
+  background-color: #ffffff;
+  border-top: 1px solid #eaebee;
+  padding: 2.4rem 0 10rem;
+  display: grid;
+}

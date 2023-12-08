@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>당근마켓</title>
+        <link rel="stylesheet" href="/css/login.css" />
+    </head>
+    <body>
+    <div id="wrap">
+        <div class="container">
+            <div class="login">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/images/main_img.png" alt="로그인 이미지" />
+                    </a>
+                </div>
+                <div class="loginform">
+                    <form class="form" name="joinform" method="post" action="/user/login" >
+                        <div>
+                            <input
+                                    type="text"
+                                    class="id"
+                                    name="username"
+                                    placeholder="아이디를 입력해줘요"
+                            />
+                        </div>
+                        <div>
+                            <input
+                                    type="password"
+                                    class="pw"
+                                    name="password"
+                                    placeholder="비밀번호를 입력해줘요"
+                            />
+                        </div>
+                        <div class="login_btn">
+                            <button class="submit" type="submit">로그인</button>
+                        </div>
+
+                        <section class="join">
+                            <a class="find" href="/user/findPw">비밀번호 찾기</a>
+
+                            <a class="join" href="/user/join">회원가입</a>
+                        </section>
+                        <h1>간편 로그인</h1>
+                        <div class="m-2 oauth_icon">
+                            <a href="/oauth2/authorization/google"> <img src="/images/google_icon_2.png" class="google_icon" /></a>
+                            <a href="/oauth2/authorization/kakao"> <img src="/images/kakao_icon.webp"  class="kakao_icon"/></a>
+                            <a href="/oauth2/authorization/naver"> <img src="/images/naver_icon.png" class="naver_icon"/></a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+ 		const isValid = ()=>{
+ 			const form = document.joinform;
+ 			if(form.id.value.trim()==""){
+ 				alert("ID을 입력하세요.");
+ 				return;
+ 			}
+ 			if(form.password.value.trim()==""){
+ 				alert("PASSWORD을 입력하세요.");
+ 				return;
+ 			}
+ 			form.submit();
+ 		}
+    </script>
+
+
+
+
+</body>
+</html>
