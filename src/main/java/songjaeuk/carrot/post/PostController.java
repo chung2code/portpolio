@@ -81,7 +81,7 @@ public class PostController {
 
     @GetMapping("/read")
     public void read(Long id,Model model){
-        System.out.println("GET/post/read.."+id);
+        System.out.println("GET /post/read.."+id);
         Post post = postService.getPost(id);
 
         System.out.println(post);

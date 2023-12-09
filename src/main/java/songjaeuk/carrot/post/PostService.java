@@ -47,7 +47,7 @@ public class PostService {
         post.setPrice(dto.getPrice());
         post.setPlace(dto.getPlace());
         post.setUsername(dto.getUsername());
-       // post.setCreatedAt(dto.getCreatedAt());
+        post.setCreated_at(dto.getCreatedAt());
 
         postRepository.save(post);
         System.out.println("저장확인 ID : " + post.getId());

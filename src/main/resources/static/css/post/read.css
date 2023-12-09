@@ -77,69 +77,7 @@ button {
   align-items: center;
 }
 
-.mainlogo {
-  margin-right: 4rem;
-}
 
-nav {
-  display: flex;
-}
-nav li a {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1.4;
-  margin-right: 3rem;
-  display: flex;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.rightform {
-  display: flex;
-  text-align: center;
-  align-items: center;
-  line-height: 4;
-  position: relative;
-}
-
-.rightform .input {
-  height: 40px;
-  line-height: 28px;
-  padding: 0 1rem;
-  width: 100%;
-  padding-left: 2.5rem;
-  border: 2px solid transparent;
-  border-radius: 8px;
-  outline: none;
-  background-color: #fc934d;
-  color: #0d0c22;
-  text-align: center;
-  transition: 0.3s ease;
-}
-
-.input::placeholder {
-  color: #ffffff;
-}
-
-.rightform .icon {
-  position: absolute;
-  left: 1rem;
-  fill: #ffffff;
-  width: 1rem;
-  height: 4rem;
-}
-
-.rightform form {
-  display: flex;
-  justify-content: center;
-  padding-right: 0%;
-}
-
-.login a {
-  font-size: large;
-  text-align: center;
-  margin-bottom: 3rem;
-}
 /* main */
 .read_page {
   margin-top: 100px;
@@ -710,25 +648,4 @@ body {
 .recommnet_btn > .like {
   border: 2px solid rgba(0, 0, 0, 0.1);
   padding: 5px;
-}
-footer {
-  background-color: #ffffff;
-  color: black;
-  padding-top: 64px;
-  line-height: 1.5;
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: center;
-}
-footer > ul {
-  display: flex;
-  flex-direction: column;
-  width: 33%;
-  list-style-type: disc;
-}
-footer > div > .foot_sct2 {
-  background-color: #ffffff;
-  border-top: 1px solid #eaebee;
-  padding: 2.4rem 0 10rem;
-  display: grid;
 }
