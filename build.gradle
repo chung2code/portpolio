@@ -41,7 +41,7 @@ dependencies {
 
 	//ORM_JPA
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	runtimeOnly 'mysql:mysql-connector-java'
+	runtimeOnly 'mysql:mysql-connector-java:8.0.26'
 
 	//FILE UPLOAD
 	implementation 'commons-fileupload:commons-fileupload:1.5'
