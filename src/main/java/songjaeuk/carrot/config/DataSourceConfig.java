@@ -13,7 +13,7 @@ public class DataSourceConfig {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/carrotdb");
         dataSource.setUsername("root");
-        dataSource.setPassword("1234");
+        dataSource.setPassword("qwer1234");
 
         return dataSource;
     }
