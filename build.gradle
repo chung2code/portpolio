@@ -36,7 +36,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	//DATABASE
-	implementation 'mysql:mysql-connector-java:8.0.35'
+	implementation 'mysql:mysql-connector-java:8.0.26'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 
 	//ORM_JPA
