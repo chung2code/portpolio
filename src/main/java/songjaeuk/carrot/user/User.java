@@ -1,9 +1,6 @@
 package songjaeuk.carrot.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import songjaeuk.carrot.common.TimeEntity;
 
@@ -14,7 +11,8 @@ import java.time.LocalDateTime;
 @Table(name = "user")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 public class User  {
 
