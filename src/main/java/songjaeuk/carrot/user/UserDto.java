@@ -1,13 +1,16 @@
 package songjaeuk.carrot.user;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
 public class UserDto {
 
 
