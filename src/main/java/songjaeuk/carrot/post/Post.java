@@ -1,6 +1,7 @@
 package songjaeuk.carrot.post;
 
 import lombok.*;
+import songjaeuk.carrot.common.TimeEntity;
 
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Post {
+public class Post extends TimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
