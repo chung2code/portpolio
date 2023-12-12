@@ -29,7 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 
-@Controller
+@RestController
 @Slf4j
 @RequestMapping("/user")
 public class UserController {
