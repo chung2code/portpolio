@@ -44,7 +44,7 @@ public class UserController {
     @GetMapping("/login")
     public String login_get() {
         log.info("GET/user/login");
-        return "/user/login";  // 로그인 폼을 제공하는 뷰 이름 반환
+        return " user/login";  // 로그인 폼을 제공하는 뷰 이름 반환
     }
     @GetMapping("/join")
     public void join_get() {
@@ -60,7 +60,7 @@ public class UserController {
                 log.info(error.getField() + " : " + error.getDefaultMessage());
                 model.addAttribute(error.getField(), error.getDefaultMessage());
             }
-            return "/user/join";
+            return "user/join";
         }
 
         // 회원 가입 처리
@@ -69,12 +69,12 @@ public class UserController {
         // 회원 가입 실패 시
         if (user == null) {
             // TODO: 실패 메시지 설정 또는 추가적인 에러 핸들링 수행
-            return "/user/join";
+            return "user/join";
         }
 
         log.info(String.valueOf(user));  // 로그에 저장된 사용자 정보 출력
 
-        return "redirect:/user/login";
+        return "redirect: user/login";
     }
 
 
