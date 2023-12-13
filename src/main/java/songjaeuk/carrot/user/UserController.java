@@ -74,7 +74,7 @@ public class UserController {
 
         log.info(String.valueOf(user));  // 로그에 저장된 사용자 정보 출력
 
-        return "redirect: /user/login";
+        return "redirect: user/login";
     }
 
 
