@@ -5,13 +5,13 @@ import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.data.repository.query.Param;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import songjaeuk.carrot.config.auth.PrincipalDetails;
-import songjaeuk.carrot.user.UserDto;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -53,7 +53,7 @@ public class UserController {
 
     @PostMapping("/join")
     public String join_post(@Valid UserDto dto, BindingResult bindingResult, Model model) {
-        log.info("POST /user/join " + dto);
+        log.info("POST user/join " + dto);
 
         if (bindingResult.hasFieldErrors()) {
             for (FieldError error : bindingResult.getFieldErrors()) {
@@ -74,7 +74,7 @@ public class UserController {
 
         log.info(String.valueOf(user));  // 로그에 저장된 사용자 정보 출력
 
-        return "redirect: user/login";
+      return "redirect:/user/login";
     }
 
 
