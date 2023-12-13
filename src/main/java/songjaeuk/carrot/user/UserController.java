@@ -29,7 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 
-@RestController
+@Controller
 @Slf4j
 @RequestMapping("/user")
 public class UserController {
@@ -43,8 +43,8 @@ public class UserController {
 
     @GetMapping("/login")
     public String login_get() {
-        log.info("GET/user/login");
-        return " login";  // 로그인 폼을 제공하는 뷰 이름 반환
+        log.info("GET /login");
+        return "/login";  // 로그인 폼을 제공하는 뷰 이름 반환
     }
     @GetMapping("/join")
     public void join_get() {
@@ -60,7 +60,7 @@ public class UserController {
                 log.info(error.getField() + " : " + error.getDefaultMessage());
                 model.addAttribute(error.getField(), error.getDefaultMessage());
             }
-            return "user/join";
+            return "/user/join";
         }
 
         // 회원 가입 처리
@@ -74,7 +74,7 @@ public class UserController {
 
         log.info(String.valueOf(user));  // 로그에 저장된 사용자 정보 출력
 
-        return "redirect: login";
+        return "redirect: /user/login";
     }
 
 
