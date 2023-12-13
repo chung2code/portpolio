@@ -60,7 +60,7 @@ public class UserController {
                 log.info(error.getField() + " : " + error.getDefaultMessage());
                 model.addAttribute(error.getField(), error.getDefaultMessage());
             }
-            return "/user/join";
+            return "user/join";
         }
 
         // 회원 가입 처리
