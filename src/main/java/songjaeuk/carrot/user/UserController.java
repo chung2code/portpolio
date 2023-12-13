@@ -44,7 +44,7 @@ public class UserController {
     @GetMapping("/login")
     public String login_get() {
         log.info("GET /login");
-        return "/login";  // 로그인 폼을 제공하는 뷰 이름 반환
+        return "user/login";  // 로그인 폼을 제공하는 뷰 이름 반환
     }
     @GetMapping("/join")
     public void join_get() {
