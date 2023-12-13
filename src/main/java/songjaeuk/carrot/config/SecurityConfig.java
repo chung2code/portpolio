@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 //로그인
                 .formLogin()
-                .loginPage("/user/login")
+                .loginPage("/login")
                 .successHandler(new CustomLoginSuccessHandler())					//ROLE_USER -> user페이지 / ROLE_MEMBER -> member페이지
                 .failureHandler(new CustomAuthenticationFailureHandler())
 
