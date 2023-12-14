@@ -38,6 +38,9 @@ public class UserController {
     private UserService userService;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
 
@@ -158,6 +161,41 @@ public class UserController {
         return new ResponseEntity("패스워드 불일치",HttpStatus.UNAUTHORIZED);
     }
 
+// 아이디 중복검사
+@PostMapping("/checkID")
+@ResponseBody
+public CheckIdResponse checkId(@RequestBody CheckIdRequest request) {
+    boolean exists = userRepository.existsById(request.getId());
+    return new CheckIdResponse(!exists);
+}
+
+    public static class CheckIdRequest {
+        private String id;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+    }
+
+    public static class CheckIdResponse {
+        private boolean success;
+
+        public CheckIdResponse(boolean success) {
+            this.success = success;
+        }
+
+        public boolean isSuccess() {
+            return success;
+        }
+
+        public void setSuccess(boolean success) {
+            this.success = success;
+        }
+    }
 
 
 

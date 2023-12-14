@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>당근마켓</title>
     <link rel="stylesheet" href="/css/user/join.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div id="wrap">
@@ -61,13 +62,19 @@
 <!-- main -->
 <section>
     <div class="join">
-        <form action="/user/join" method="POST" name="joinform" class="joinForm" onsubmit=" return false;">
+        <form action="/user/join" method="POST" name="joinform" class="joinForm" onblur="checkID()" onsubmit=" return false;">
 
             <h2>회원가입</h2>
             <div class="textForm">
                 <input name="Id" type="text" class="id" placeholder="아이디">
-
+                <div class="id_check">
+                    <button class="check_btn" type="button" onclick="checkID()">중복 확인</button>
+                </div>
             </div>
+            <div id="idCheckResult"></div>
+
+
+
             <div class="textForm">
                 <input name="password" type="password" class="pw" placeholder="비밀번호">
             </div>
@@ -92,37 +99,84 @@
     </div>
 </section>
 <script>
+    function checkID() {
+        var id = document.forms["joinform"]["Id"].value;
+        if(id == "" || id == null) {
+            $('#idCheckResult').show().text("아이디를 입력해주세요.");
+            return false;
+        }
+        $.ajax({
+            url: '/user/checkID',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({id: id}),
+            success: function(data) {
+                if(data.success) {
+                    $("#idCheckResult").show().text("사용 가능한 아이디입니다.");
+                } else {
+                    $("#idCheckResult").show().text("이미 사용 중인 아이디입니다.");
+                }
+            },
+            error: function() {
+                $("#idCheckResult").show().text("서버 오류가 발생했습니다. 다시 시도해 주세요.");
+            }
+        });
+    }
+</script>
+<script>
+    function isValid() {
+    var id = document.forms["joinform"]["Id"].value;
+    var password = document.forms["joinform"]["password"].value;
+    var passwordcheck = document.forms["joinform"]["passwordcheck"].value;
+    var name = document.forms["joinform"]["name"].value;
+    var email = document.forms["joinform"]["Email"].value;
+    var nickname = document.forms["joinform"]["nickname"].value;
+    var phone = document.forms["joinform"]["phone"].value;
 
-    //모든 공백 체크 정규식
-var empJ = /\s/g;
-//아이디 정규식
-var idJ = /^[a-z0-9]{5,20}$/;
-// 비밀번호 정규식
-var pwJ = /^[a-z0-9]{6,20}$/;
-// 이름 정규식
-var nameJ = /^[가-힣]{2,6}$/;
-// 휴대폰 번호 정규식
-var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+    if(id == "" || id == null) {
+        alert("아이디를 입력해주세요.");
+        return false;
+    }
 
+    var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if(password == "" || password == null || !passwordPattern.test(password)) {
+        alert("비밀번호는 최소 8자 이상이며, 대문자, 소문자, 숫자, 그리고 특수문자를 모두 포함해야 합니다.");
+        return false;
+    }
 
-   const isValid = ()=>{
-                        const form = document.joinform;
-                        /*
-                        if(form.Id.value.trim()==""){
-                            alert("ID을 입력하세요.");
-                            return;
-                        }
-                        if(form.password.value.trim()==""){
-                            alert("PASSWORD을 입력하세요.");
-                            return;
-                        }
-                        */
+    if(password != passwordcheck) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return false;
+    }
 
-                        form.submit();
-                    }
+    if(name == "" || name == null) {
+        alert("이름을 입력해주세요.");
+        return false;
+    }
 
+    var emailPattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
+    if(email == "" || email == null || !emailPattern.test(email)) {
+        alert("유효한 이메일 주소를 입력해주세요.");
+        return false;
+    }
+
+    if(nickname == "" || nickname == null) {
+        alert("닉네임을 입력해주세요.");
+        return false;
+    }
+
+    var phonePattern = /^\d{3}\d{3,4}\d{4}$/;
+    if(phone == "" || phone == null || !phonePattern.test(phone)) {
+        alert("올바른 전화번호 형식을 입력해주세요. (예: 01012345678)");
+        return false;
+    }
+
+    return true;
+}
 
 </script>
+
+
 
 </body>
 </html>
