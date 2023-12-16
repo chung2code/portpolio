@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- th:fragment     -->
+    <th:block th:insert="fragments/head :: headOutterLink" />
+
+
 </head>
 <body>
 
@@ -41,19 +46,20 @@
 <div class="wrapper container-xxl">
 
 
-  <main>
+    <main>
 
-    <section>
+        <section>
 
-      <div class="logout_block">
+            <div class="logout_block">
 
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
 
-      </div>
+            </div>
+        </section>
 
     </main>
 </div>
