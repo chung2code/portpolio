@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import songjaeuk.carrot.config.auth.PrincipalDetailsOAuth2Service;
 import songjaeuk.carrot.config.auth.PrincipalDetailsService;
 import songjaeuk.carrot.config.auth.exceptionHandler.CustomAccessDeniedHandler;
@@ -48,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/css/**","/js/**","/images/**","/post/**").permitAll()
-                .antMatchers("/","/user/login","/user/join","/logout").permitAll()
+                .antMatchers("/","/user/login","/user/join","/user/logout").permitAll()
                 .antMatchers("/user/**").permitAll()
                 .antMatchers("/post/**").permitAll()
                 .antMatchers("/mypage/**").permitAll()
@@ -65,13 +66,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(new CustomAuthenticationFailureHandler())
 
                 .and()
-                //로그아웃
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/") // 로그아웃 성공 후 이동할 URL
                 .permitAll()
                 .addLogoutHandler(new CustomLogoutHandler()) // 세션 초기화
                 .addLogoutHandler(new OAuthLogoutHandler())
+
 
                 .and()
                 //예외처리

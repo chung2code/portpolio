@@ -50,7 +50,7 @@ public class PostController {
             @RequestParam(value = "files",required = false) MultipartFile[] files,
 
             Authentication authentication) throws IOException {
-        log.info("POST /post/add " + files);
+            log.info("POST /post/add " + files);
 
 
         PostDto dto = new PostDto();
