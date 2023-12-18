@@ -54,12 +54,17 @@ document.addEventListener("DOMContentLoaded", function () {
         var detailsValue = document.getElementById('details').value;
         var priceValue = document.getElementById('price').value;
         var placeValue = document.getElementById('place').value;
+        var files = document.getElementById('files').files;
 
+        var formData = new FormData();
         formData.append("title", titleValue);
         formData.append("details", detailsValue);
         formData.append("price", priceValue);
         formData.append("place", placeValue);
 
+          for (var i = 0; i < files.length; i++) {
+                formData.append("files", files[i]);
+            }
         console.log('formData', formData);
 
           axios({
