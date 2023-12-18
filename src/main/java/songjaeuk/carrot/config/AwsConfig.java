@@ -1,5 +1,6 @@
 package songjaeuk.carrot.config;
 
+import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
@@ -23,10 +24,12 @@ public class AwsConfig {
 
     @Bean
     public AmazonS3 amazonS3Client() {
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials(accessKey, secretKey);
-        return AmazonS3ClientBuilder.standard()
-                .withRegion(Regions.fromName(region))
-                .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
+        AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
+
+        return AmazonS3ClientBuilder
+                .standard()
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .withRegion(region)
                 .build();
     }
 }

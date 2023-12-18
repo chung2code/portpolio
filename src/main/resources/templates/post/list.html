@@ -74,6 +74,7 @@
                             <div class="product_img">
                                 <div class="upload-box">
                                     <div class="plus">+</div>
+                                    <input type="file" id="files" name="files" multiple style="display:none;">
 
 
 
@@ -168,6 +169,11 @@ function openpop() {
 function closePop() {
   document.getElementById("popup_layer").style.display = "none";
 }
+</script>
+<script>
+    document.querySelector(".plus").addEventListener('click', function (event) {
+    document.getElementById('files').click();
+});
 </script>
 </body>
 </html>

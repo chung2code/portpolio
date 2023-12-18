@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import songjaeuk.carrot.common.S3Uploader;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -30,47 +31,16 @@ import java.util.UUID;
 @Slf4j
 public class PostService {
 
-    private String postPath = "c:\\CarrotImage\\";
+
     @Autowired
     private PostRepository postRepository;
 
     @Autowired
     private ResourceLoader resourceLoader;
     @Autowired
-    private AmazonS3 amazonS3;
-    @Value("{cloud.aws.s3.bucket}")
-    private String bucket="carrot-bucket";
+    private S3Uploader s3Uploader;
 
-    public String uploadImage(MultipartFile multipartFile) {
-        String fileName = createFileName(multipartFile.getOriginalFilename());
 
-        ObjectMetadata objectMetadata = new ObjectMetadata();		// ObjectMetadata 를 통해 파일에 대한 정보를 추가
-        objectMetadata.setContentLength(multipartFile.getSize());		// multipartFil 의 크기 설정 (byte)
-        objectMetadata.setContentType(multipartFile.getContentType());	// multipartFil 의 컨텐츠 유형 설정
-
-        try(InputStream inputStream = multipartFile.getInputStream()) {
-            amazonS3.putObject(new PutObjectRequest(bucket, fileName, inputStream, objectMetadata)		// 객체를 S3에 업로드
-                    .withCannedAcl(CannedAccessControlList.PublicRead));		// 업로드된 객체에 대한 공개 읽기 권한을 설정
-        } catch(IOException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "이미지 업로드에 실패했습니다.");
-        }
-
-        return amazonS3.getUrl(bucket, fileName).toString();		// 업로드된 객체(사진)의 URL을 반환
-    }
-
-    // 파일 이름 생성
-    private String createFileName(String fileName) {
-        return UUID.randomUUID().toString().concat(getFileExtension(fileName));
-    }
-
-    // 파일 확장자
-    private String getFileExtension(String fileName) {
-        try {
-            return fileName.substring(fileName.lastIndexOf("."));
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 형식의 파일(" + fileName + ") 입니다.");
-        }
-    }
 
 
 
@@ -86,6 +56,11 @@ public class PostService {
     public void addPost(PostDto dto) throws IOException {
         System.out.println("PostService's addPost");
 
+        // 데이터 유효성 검사 추가
+        if(dto.getTitle() == null || dto.getDetails() == null || dto.getPrice() == null || dto.getPlace() == null || dto.getUsername() == null || dto.getCreatedAt() == null) {
+            throw new IllegalArgumentException("Invalid input data");
+        }
+
         Post post = new Post();
         post.setTitle(dto.getTitle());
         post.setDetails(dto.getDetails());
@@ -99,14 +74,16 @@ public class PostService {
 
         List<String> postlist = new ArrayList<>();
 
-        for (MultipartFile file : dto.getFiles()) {
-            System.out.println("---------------------");
-            System.out.println("FILE NAME:" + file.getOriginalFilename());
-            System.out.println("FILE SIZE:" + file.getSize() + "Byte");
-            System.out.println("----------------------");
+        if(dto.getFiles() != null && dto.getFiles().length > 0) {
+            for (MultipartFile file : dto.getFiles()) {
+                System.out.println("---------------------");
+                System.out.println("FILE NAME:" + file.getOriginalFilename());
+                System.out.println("FILE SIZE:" + file.getSize() + "Byte");
+                System.out.println("----------------------");
 
-            String imageUrl = uploadImage(file); // upload to S3 and get URL
-            postlist.add(imageUrl);
+                String imageUrl = s3Uploader.upload(file, "images"); // upload to S3 and get URL
+                postlist.add(imageUrl);
+            }
         }
 
         post.setFiles(postlist);

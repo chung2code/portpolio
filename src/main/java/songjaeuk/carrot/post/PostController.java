@@ -47,11 +47,15 @@ public class PostController {
             @RequestParam("details") String details,
             @RequestParam("price") String price,
             @RequestParam("place") String place,
-            @RequestParam(value = "files",required = false) MultipartFile[] files,
-
+            @RequestParam(value = "files", required = false) MultipartFile[] files,
             Authentication authentication) throws IOException {
-            log.info("POST /post/add " + files);
 
+        // 유효성 검사 추가
+        if(title == null || details == null || price == null || place == null || authentication == null || files == null || files.length == 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+        log.info("POST /post/add " + files);
 
         PostDto dto = new PostDto();
         dto.setTitle(title);
@@ -59,23 +63,17 @@ public class PostController {
         dto.setPrice(price);
         dto.setPlace(place);
         dto.setFiles(files);
-
-
-
         dto.setCreatedAt(LocalDateTime.now());
 
         PrincipalDetails principal = (PrincipalDetails) authentication.getPrincipal();
 
         if (principal != null) {
             dto.setUsername(principal.getUsername());
-            // ... call the service method to save the data
             postService.addPost(dto);
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-
-
     }
 
 

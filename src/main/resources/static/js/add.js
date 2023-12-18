@@ -56,30 +56,36 @@ document.addEventListener("DOMContentLoaded", function () {
         var placeValue = document.getElementById('place').value;
         var files = document.getElementById('files').files;
 
+        // 유효성 검사 추가
+        if(!titleValue || !detailsValue || !priceValue || !placeValue || files.length == 0) {
+            alert('모든 필드를 채워주세요.');
+            return;
+        }
+
         var formData = new FormData();
         formData.append("title", titleValue);
         formData.append("details", detailsValue);
         formData.append("price", priceValue);
         formData.append("place", placeValue);
 
-          for (var i = 0; i < files.length; i++) {
-                formData.append("files", files[i]);
-            }
+        for (var i = 0; i < files.length; i++) {
+            formData.append("files", files[i]);
+        }
         console.log('formData', formData);
 
-          axios({
-                     method: "post",
-                     url: "/post/add",
-                     data: formData,
-                     headers: { "Content-Type": "multipart/form-data" },
-                   })
-                   .then(function (response) {
-                     alert("성공적으로 게시물이 추가되었습니다.");
-                     window.location.href = "/post/list";
-                   })
-                   .catch(function (error) {
-                     alert("게시물 추가 실패 : " + error);
-                     console.error(error);
-                   });
-                 });
+        axios({
+            method: "post",
+            url: "/post/add",
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then(function (response) {
+            alert("성공적으로 게시물이 추가되었습니다.");
+            window.location.href = "/post/list";
+        })
+        .catch(function (error) {
+            alert("게시물 추가 실패 : " + error);
+            console.error(error);
+        });
+    });
 });
