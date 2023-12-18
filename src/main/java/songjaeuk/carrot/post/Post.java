@@ -31,4 +31,6 @@ public class Post extends TimeEntity {
     @ElementCollection
     private List<String> files;
 
+    private String imageUrl;
+
 }

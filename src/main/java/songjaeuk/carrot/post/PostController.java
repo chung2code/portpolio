@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import songjaeuk.carrot.config.auth.PrincipalDetails;
 
 import java.io.IOException;
@@ -31,6 +32,21 @@ public class PostController {
         List<Post> list = postService.getPostList();
         System.out.println(list);
         list.stream().forEach(item-> System.out.println(item));
+
+        for (Post post : list) {
+            if (!post.getFiles().isEmpty()) {
+                String filename = post.getFiles().get(0);
+                String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                        .path("/post/")
+                        .path(post.getUsername())
+                        .path("/")
+                        .path(post.getId().toString())
+                        .path("/")
+                        .path(filename)
+                        .toUriString();
+                post.setImageUrl(fileDownloadUri);
+            }
+        }
 
         model.addAttribute("list",list);
 
