@@ -1,17 +1,20 @@
-package songjaeuk.carrot.user.mypage;
+package songjaeuk.carrot.mypage;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import songjaeuk.carrot.config.auth.PrincipalDetails;
 import songjaeuk.carrot.post.PostService;
 import songjaeuk.carrot.user.UserDto;
 import songjaeuk.carrot.user.UserService;
 
 @Controller
+@Slf4j
+@RequestMapping("/mypage")
 public class MyPageController {
 
     @Autowired
@@ -20,6 +23,19 @@ public class MyPageController {
     private MyPageService myPageService;
     @Autowired
     private PostService postService;
+
+    @GetMapping("/home")
+    public String mypage(Authentication authentication, Model model)
+    {
+        log.info("GET /user/mypage/mypageHome..");
+
+        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+        UserDto userDto = principalDetails.getUser();
+
+
+        model.addAttribute("userDto",principalDetails.getUser());
+        return "mypage/mypageHome";
+    }
 
     //회원정보 수정
     @PutMapping("/users/{username}")

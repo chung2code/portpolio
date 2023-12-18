@@ -34,7 +34,16 @@
                             th:text="${#authentication.getPrincipal().getUser().getProvider()}"
                     ></span>
                 </div>
+                <div class="item"
+                        style="margin-right:10px">
+                    <div id="mypage">
+                        <button type="button"  onclick="location.href='mypage/home'">
+                            마이페이지
+                        </button>
+                    </div>
+                </div>
             </div>
+
 
             <div class="item" sec:authorize="isAuthenticated()">
                 <form

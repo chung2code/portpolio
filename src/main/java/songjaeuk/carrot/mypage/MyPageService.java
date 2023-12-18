@@ -1,4 +1,4 @@
-package songjaeuk.carrot.user.mypage;
+package songjaeuk.carrot.mypage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

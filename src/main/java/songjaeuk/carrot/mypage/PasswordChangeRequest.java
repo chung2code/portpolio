@@ -1,4 +1,4 @@
-package songjaeuk.carrot.user.mypage;
+package songjaeuk.carrot.mypage;
 
 import lombok.Data;
 
