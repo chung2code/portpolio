@@ -75,13 +75,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         axios({
             method: "post",
-            url: "/post/add",
+            url: " post/add",
             data: formData,
             headers: { "Content-Type": "multipart/form-data" },
         })
         .then(function (response) {
             alert("성공적으로 게시물이 추가되었습니다.");
-            window.location.href = "/post/list";
+            window.location.href = "post/list";
         })
         .catch(function (error) {
             alert("게시물 추가 실패 : " + error);
