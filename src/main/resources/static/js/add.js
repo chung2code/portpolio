@@ -20,6 +20,36 @@ document.addEventListener("DOMContentLoaded", function () {
         uploadBox_el.style.opacity = "1";
         console.log("dragleave...");
     });
+ // '+' 버튼 클릭 시 파일 선택 창 호출
+ document.querySelector(".plus").addEventListener('click', function (event) {
+     document.getElementById('files').click();
+ });
+
+ // 파일 선택 시 이벤트
+ document.getElementById('files').addEventListener('change', function (e) {
+     // 선택된 파일을 가져옵니다.
+     const file = e.target.files[0];
+
+     // 파일 유효성 검사 - 이미지 파일만 처리
+     if (!file.type.startsWith("image/")) {
+         alert("이미지 파일만 가능합니다");
+         return;
+     }
+
+     // formData에 저장
+     formData.append("files", file);
+
+     // 미리보기 생성
+     const reader = new FileReader();
+     reader.readAsDataURL(file);
+     reader.onload = function (event) {
+         const preview = document.getElementById("preview");
+         const imgEl = document.createElement("img");
+         imgEl.setAttribute("src", event.target.result);
+         preview.appendChild(imgEl);
+     };
+ });
+
 
     uploadBox_el.addEventListener("drop", function (e) {
         e.preventDefault();
