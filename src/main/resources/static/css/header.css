@@ -18,6 +18,7 @@
 
 img {
   width: 100px;
+  border:none;
 }
 
 body {
@@ -117,82 +118,126 @@ input {
   margin: 5px 0;
 }
 
-footer {
+/*start*/
+body {
+  background: #fbf7f2;
+}
+
+header {
+  position: relative;
   min-width: 400px;
-  height: 700px;
-  text-align: left;
-  background: #848484;
-  padding: 40px;
-
-}
-
-footer > * {
-  width: 300px;
-  margin: 20px 0;
-}
-
-footer > :nth-child(1) section {
   display: flex;
-  text-align: left;
-
+  justify-content: space-between;
+  background: white;
+}
+.nav_right {
+  display: flex;
+}
+.logins {
+  display: flex;
+  line-height: 4;
 }
 
-footer > :nth-child(1) a {
-  display: block;
-  line-height: 2rem;
-  color: lightgray;
-  text-decoration: none;
-  font-size: 15px;
+.login button {
+  font-size: large;
+  text-align: center;
   font-family: "DNFBitBitv2";
 }
 
-footer > :nth-child(1) a:hover {
+
+
+.logoutmenu {
+  display: flex;
+}
+.logoutmenu span {
+  font-size: large;
+
+  font-family: "DNFBitBitv2";
+  line-height: 3;
+  margin-right: 10px;
+}
+.item button {
+  font-size: large;
+
+  font-family: "DNFBitBitv2";
+}
+
+header img {
+  width: 150px;
+  cursor: pointer;
+}
+
+header > :first-child {
+  padding: 10px;
+}
+
+#open {
+  width: 80px;
+  padding: 10px;
+}
+
+#open img {
+  width: 50px;
+  border: none;
+}
+
+header nav {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  z-index: 1;
+  transition: 0.2s;
+  background: white;
+}
+
+header nav section {
+  padding: 0 20px;
+}
+
+header nav input {
+  width: 100%;
+  padding: 20px;
+  border: 3px solid #ff8134;
+  border-radius: 10px;
+  display: block;
+}
+
+header nav p {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: lighter;
+  cursor: pointer;
+  display: inline;
+  margin-left: 15px;
+}
+
+header nav p:hover {
   text-decoration: underline;
 }
 
-footer > :nth-child(1) a::after {
-  content: "|";
-  margin: 0 10px;
+header nav a {
+  float: right;
 }
 
-footer > :nth-child(1) section > :last-child::after {
-  content: "";
+.line {
+  border-bottom: 5px solid ;
+  width: 100%;
+  margin: 50px 0;
 }
 
-footer > :nth-child(1) > :last-child::after {
-  content: "";
+header nav > :last-child {
+  text-align: center;
 }
 
-footer p {
-  font-size: 0.85rem;
-  line-height: 1.8rem;
+header nav > :last-child button {
+  width: 280px;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  color: white;
+  background: #ff8134;
+  border-radius: 10px;
 }
-
-footer > :nth-child(4) {
-  display: flex;
-  justify-content: space-around;
-}
-
-footer > :nth-child(4) img {
-  width: 25px;
-}
-
-@media screen and (min-width: 800px) {
-  .products {
-    margin: 0 auto;
-    height: 1500px;
-  }
-
-  .products section {
-    display: flex;
-    justify-content: space-around;
-    margin: 0 auto;
-    margin-top: 30px;
-    width: 1000px;
-    cursor: pointer;
-  }
-
-  .products section div img {
-    width: 100%;
-  }
-}
+/* 헤더끝 */

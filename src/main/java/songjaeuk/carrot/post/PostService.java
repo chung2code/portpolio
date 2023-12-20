@@ -102,8 +102,56 @@ public class PostService {
     }
 
     //update
+    @Transactional(rollbackFor = Exception.class)
+    public void updatePost(Long id, PostDto dto) throws IOException {
+        System.out.println("PostService's updatePost");
+
+        // 데이터 유효성 검사 추가
+        if(dto.getTitle() == null || dto.getDetails() == null || dto.getPrice() == null || dto.getPlace() == null || dto.getUsername() == null || dto.getCreatedAt() == null) {
+            throw new IllegalArgumentException("Invalid input data");
+        }
+
+        // 기존의 게시글을 찾아옵니다.
+        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Post not found"));
+
+        // 게시글 정보를 업데이트합니다.
+        post.setTitle(dto.getTitle());
+        post.setDetails(dto.getDetails());
+        post.setPrice(dto.getPrice());
+        post.setPlace(dto.getPlace());
+        post.setUsername(dto.getUsername());
+        post.setCreated_at(dto.getCreatedAt());
+
+        // 이미지 리스트를 업데이트합니다.
+        List<String> postlist = new ArrayList<>();
+        if(dto.getFiles() != null && dto.getFiles().length > 0) {
+            for (MultipartFile file : dto.getFiles()) {
+                System.out.println("---------------------");
+                System.out.println("FILE NAME:" + file.getOriginalFilename());
+                System.out.println("FILE SIZE:" + file.getSize() + "Byte");
+                System.out.println("----------------------");
+
+                String imageUrl = s3Uploader.upload(file, "images"); // upload to S3 and get URL
+                postlist.add(imageUrl);
+            }
+        }
+
+        post.setFiles(postlist);
+        postRepository.save(post);
+    }
+
 
     //delete
+    @Transactional(rollbackFor = Exception.class)
+    public void deletePost(Long id) {
+        System.out.println("PostService's deletePost");
+
+        // 기존의 게시글을 찾아옵니다.
+        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Post not found"));
+
+        // 게시글을 삭제합니다.
+        postRepository.delete(post);
+    }
 
 
 
