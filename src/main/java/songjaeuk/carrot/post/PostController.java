@@ -129,13 +129,15 @@ public class PostController {
 
         PrincipalDetails principal = (PrincipalDetails) authentication.getPrincipal();
 
-        if (principal != null) {
-            dto.setUsername(principal.getUsername());
-            postService.updatePost(id, dto);
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+        // 게시글 작성자와 현재 로그인된 사용자가 동일한지 확인
+//        Post post = postService.getPost(id);
+//        if (principal == null || !post.getUsername().equals(principal.getUser().getId())) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+//        }
+
+        dto.setUsername(principal.getUsername());
+        postService.updatePost(id, dto);
+        return ResponseEntity.ok().build();
     }
 
 
@@ -155,13 +157,16 @@ public class PostController {
 
         PrincipalDetails principal = (PrincipalDetails) authentication.getPrincipal();
 
-        if (principal != null) {
-            postService.deletePost(id);
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+        // 게시글 작성자와 현재 로그인된 사용자가 동일한지 확인
+//        Post post = postService.getPost(id);
+//        if (principal == null || !post.getUsername().equals(principal.getUser().getId())) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+//        }
+
+        postService.deletePost(id);
+        return ResponseEntity.ok().build();
     }
+
 
 }
 

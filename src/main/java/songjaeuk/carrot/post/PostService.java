@@ -146,10 +146,10 @@ public class PostService {
     public void deletePost(Long id) {
         System.out.println("PostService's deletePost");
 
-        // 기존의 게시글을 찾아옵니다.
+
         Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Post not found"));
 
-        // 게시글을 삭제합니다.
+
         postRepository.delete(post);
     }
 

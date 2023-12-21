@@ -30,7 +30,8 @@
                     <div class="img">
                         <th:block th:if="${post != null && !post.files.isEmpty()}">
                             <!-- AWS S3의 이미지 URL 사용 -->
-                            <img th:src="@{'http://carrot-bucket.s3-website.ap-northeast-2.amazonaws.com/' + ${post.files[0]}}" alt="Image">
+                            <img th:src="@{'http://carrot-bucket.s3-website.ap-northeast-2.amazonaws.com/images/' + ${post.files[0]}}" alt="Image">
+
                         </th:block>
 
                     </div>

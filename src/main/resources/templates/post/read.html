@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>인기매물</title>
-    <link rel="stylesheet" th:href="@{/css/post/read.css}" />
-<!--    <link rel="stylesheet" href="/css/home.css">-->
+    <link rel="stylesheet" th:href="@{/css/post/read.css}"/>
+    <!--    <link rel="stylesheet" href="/css/home.css">-->
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
-
 
 
 </head>
@@ -44,13 +43,17 @@
                 <div class="sell_select">
                     <span style="margin-right:10px ;
                       font-size:13px;">
+
                         <a class="update" type="button" href="javascript:openpop()">수정</a>
+
 
 
                       </span>
                     <span style="margin-right:10px ;
                       font-size:13px;">
-                        <a class="delete" type="button" href="#">삭제</a>
+
+                            <a class="delete" type="button" href="#">삭제</a>
+
                       </span>
                     <select class="select_box">
                         <option value disabled>선택해주세요</option>
@@ -60,9 +63,12 @@
                     </select>
                 </div>
             </div>
-            <hr />
+            <hr/>
             <div class="read_info">
-                <img th:src="@{'http://carrot-bucket.s3-website.ap-northeast-2.amazonaws.com/' + ${post.files[0]}}" alt="Image">
+                <div th:if="${not #lists.isEmpty(post.files)}">
+                    <img th:src="@{'http://carrot-bucket.s3-website.ap-northeast-2.amazonaws.com/' + ${post.files[0]}}"
+                         alt="Image">
+                </div>
                 <div class="details">
                     <p th:text="${post.price}" name="price">가격</p>
                 </div>
@@ -74,7 +80,7 @@
             <!-- 수정하기 팝업창 -->
             <div class="popup_layer" id="popup_layer" style="display: none">
                 <div class="popup_box">
-                    <div style="height: 10px; width: 100%; float: top; " >
+                    <div style="height: 10px; width: 100%; float: top; ">
                         <a href="javascript:closePop();"
                         ><img
                                 src="/images/ic_close.svg"
@@ -103,7 +109,6 @@
                                             <input type="file" id="files" name="files" multiple style="display:none;">
 
 
-
                                         </div>
                                     </div>
                                     <div>
@@ -116,7 +121,7 @@
                             </div>
                             <div class="addcont">
 
-                                <label for="title" >제목</label><br />
+                                <label for="title">제목</label><br/>
                                 <input
                                         type="text"
                                         id="title"
@@ -124,42 +129,42 @@
                                         placeholder="제목"
                                 />
                             </div>
-                            <br />
+                            <br/>
                             <div class="addcont">
 
-                                <label for="price">가격</label><br />
+                                <label for="price">가격</label><br/>
                                 <input
                                         type="number"
                                         id="price"
                                         name="price"
                                         placeholder="&#8361; 가격을 입력해주세요"
-                                /><br />
+                                /><br/>
                             </div>
                             <div class="addcont">
 
-                                <label for="details">자세한 설명</label><br />
+                                <label for="details">자세한 설명</label><br/>
                                 <input
                                         type="text"
                                         id="details"
                                         name="details"
                                         placeholder="게시글 내용을 작성해 주세요"
                                         style="height: 100px;"
-                                /><br />
-                            </div >
+                                /><br/>
+                            </div>
                             <div class="addcont">
 
-                                <label for="place">거래희망장소</label><br />
+                                <label for="place">거래희망장소</label><br/>
                                 <input
                                         type="text"
                                         id="place"
                                         name="place"
 
-                                /><br />
-                            </div >
+                                /><br/>
+                            </div>
                             <div class="writebtn">
                                 <!-- <input class="addbtn" type="submit" value="작성 완료" />-->
 
-                                <button  class='add_product-btn'>수 정 완 료</button>
+                                <button class='add_product-btn'>수 정 완 료</button>
                             </div>
                         </div>
                     </form>
@@ -168,8 +173,8 @@
                         <a href="javascript:closePop();">닫기</a>
                     </div>
                 </div>
-                </div>
-                <!-- 수정하기 끝 -->
+            </div>
+            <!-- 수정하기 끝 -->
 
             <hr/>
             <div class="read_Btn">
@@ -180,7 +185,7 @@
                     <button>카카오페이로 송금하기</button>
                 </div>
             </div>
-            <hr />
+            <hr/>
             <div class="reply">
                 <div class="reply_option">
                     <h3>댓글</h3>
@@ -200,7 +205,7 @@
                         <p>관심글 댓글 알람</p>
                         <div class="alarm_toggle">
                             <label class="switch">
-                                <input checked="" type="checkbox" />
+                                <input checked="" type="checkbox"/>
                                 <div class="slider">
                                     <div class="circle">
                                         <svg
@@ -284,7 +289,9 @@
 
 <!-- axios -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+        integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="/js/update.js"></script>
 <script>
@@ -296,6 +303,32 @@ function openpop() {
 function closePop() {
   document.getElementById("popup_layer").style.display = "none";
 }
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".delete").click(function(e){
+            e.preventDefault(); // 기본 동작 중단
+
+            // 삭제 확인 메시지 표시
+            if(!confirm("정말 삭제하시겠습니까?")) {
+                return; // 'Cancel'을 클릭하면 함수를 종료
+            }
+
+            var id = "여기에 게시물 ID를 설정해 주세요.";
+            $.ajax({
+                url: '/post/delete/{id}' ,
+                type: 'DELETE',
+                success: function(result) {
+                    // 요청이 성공적으로 완료된 경우
+                    // 페이지를 새로 고침
+                    location.reload();
+                }
+            });
+        });
+    });
+
 </script>
 </body>
 </html>
