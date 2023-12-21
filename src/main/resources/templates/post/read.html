@@ -62,7 +62,7 @@
             </div>
             <hr />
             <div class="read_info">
-                <img th:src="@{'/post/'+${post.username}+'/'+${post.id}+'/'+${post.files.get(0)}}"alt="Image">
+                <img th:src="@{'http://carrot-bucket.s3-website.ap-northeast-2.amazonaws.com/' + ${post.files[0]}}" alt="Image">
                 <div class="details">
                     <p th:text="${post.price}" name="price">가격</p>
                 </div>

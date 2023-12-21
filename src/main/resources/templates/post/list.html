@@ -29,7 +29,8 @@
                 <div th:each="post,i: ${list}" class="card">
                     <div class="img">
                         <th:block th:if="${post != null && !post.files.isEmpty()}">
-                            <img th:src="@{'/post/'+${post.username}+'/'+${post.id}+'/'+${post.files.get(0)}}"alt="Image">
+                            <!-- AWS S3의 이미지 URL 사용 -->
+                            <img th:src="@{'http://carrot-bucket.s3-website.ap-northeast-2.amazonaws.com/' + ${post.files[0]}}" alt="Image">
                         </th:block>
 
                     </div>
