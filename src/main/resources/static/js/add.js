@@ -20,10 +20,13 @@ document.addEventListener("DOMContentLoaded", function () {
         uploadBox_el.style.opacity = "1";
         console.log("dragleave...");
     });
+
  // '+' 버튼 클릭 시 파일 선택 창 호출
  document.querySelector(".plus").addEventListener('click', function (event) {
      document.getElementById('files').click();
  });
+
+
 
  // 파일 선택 시 이벤트
  document.getElementById('files').addEventListener('change', function (e) {
@@ -105,13 +108,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         axios({
             method: "post",
-            url: " post/add",
+            url: "/post/add",
             data: formData,
             headers: { "Content-Type": "multipart/form-data" },
         })
         .then(function (response) {
             alert("성공적으로 게시물이 추가되었습니다.");
-            window.location.href = "post/list";
+            window.location.href = "/post/list";
         })
         .catch(function (error) {
             alert("게시물 추가 실패 : " + error);
