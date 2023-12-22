@@ -26,7 +26,7 @@ section,
 article,
 aside,
 footer,
-header,
+
 nav,
 hgroup {
   display: block;
@@ -63,12 +63,12 @@ button {
 /* 사이드 메뉴바 스타일 */
 
 
-.nav_main {
-  position: absolute;
-  top: 45%;
-  bottom: 50%;
-  left: 20px;
-  transform: translate(-50%, -50%);
+.sidenav {
+    position: fixed;
+    top: 500px;
+    left: 20px;
+    width: 150px;
+  transform: translate(-50%, -40%);
   max-height: 100vh;
   height: 1050px;
   width: 30px;
@@ -78,9 +78,15 @@ ul {
   padding: 0;
   margin: 0;
 }
+/* .sidenav{
+    position: fixed;
+    top: 500px;
+    left: 100px;
+    width: 150px;
+} */
+.sidenav a,
+.sidenav label {
 
-.nav_main a,
-.nav_main label {
   display: block;
   width: 150px;
   height: 50px;
@@ -91,21 +97,22 @@ ul {
   -webkit-transition: all 0.25s ease-in;
   transition: all 0.25s ease-in;
   border: 1px solid #d7d7d7;
+
 }
-.nav_main a:focus,
+.sidenav a:focus,
 .nav a:hover,
-.nav_main label:focus,
-.nav_main label:hover {
+.sidenav label:focus,
+.sidenav label:hover {
   color: rgba(255, 255, 255, 0.9);
   background: #fc934d;
 }
-.nav_main a:focus,
-.nav_main a:hover{
+.sidenav a:focus,
+.sidenav a:hover{
   background: #fc934d;
   color: rgba(255, 255, 255, 0.9);
 }
 
-.nav_main label  {
+.sidenav label  {
   display: block;
   cursor: pointer;
   -webkit-transition: all 0.25s ease-in;
@@ -118,7 +125,7 @@ ul {
 
 
 }
-.nav_main a {
+.sidenav a {
   display: block;
   cursor: pointer;
   -webkit-transition: all 0.25s ease-in;

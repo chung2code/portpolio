@@ -65,10 +65,8 @@
             </div>
             <hr/>
             <div class="read_info">
-                <div th:if="${not #lists.isEmpty(post.files)}">
-                    <img th:src="@{'http://carrot-bucket.s3-website.ap-northeast-2.amazonaws.com/' + ${post.files[0]}}"
-                         alt="Image">
-                </div>
+                <img th:src="@{${post.files[0]}}" alt="Image">
+
                 <div class="details">
                     <p th:text="${post.price}" name="price">가격</p>
                 </div>
@@ -182,7 +180,7 @@
                     <button>구매 문의 채팅</button>
                 </div>
                 <div class="read_btn">
-                    <button>카카오페이로 송금하기</button>
+                    <button>관심상품등록</button>
                 </div>
             </div>
             <hr/>

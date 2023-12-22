@@ -112,6 +112,7 @@ button {
 .read_info > img {
   margin: 20px 0;
   width: 300px;
+  height:200px;
 }
 .read_info > .price p {
   margin-bottom: 20px;
