@@ -6,7 +6,8 @@
 
 ## 🚀 Visit Website
 
-[배포링크](ec2-13-124-79-159.ap-northeast-2.compute.amazonaws.com:8080)
+[배포 링크](http://ec2-13-124-79-159.ap-northeast-2.compute.amazonaws.com:8080)
+
 
 <br/>
 
