@@ -143,15 +143,18 @@ public class PostService {
 
     //delete
     @Transactional(rollbackFor = Exception.class)
-    public void deletePost(Long id) {
-        System.out.println("PostService's deletePost");
 
-
-        Post post = postRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Post not found"));
-
-
-        postRepository.delete(post);
+    public void delete(Long id) {
+        Optional<Post> post = postRepository.findById(id);
+        if (post.isPresent()) { // 게시물이 존재하는지 확인
+            postRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("게시물이 존재 하지않습니다.");
+        }
     }
+
+
+
 
 
 

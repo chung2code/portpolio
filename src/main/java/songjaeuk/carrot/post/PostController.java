@@ -15,6 +15,7 @@ import songjaeuk.carrot.config.auth.PrincipalDetails;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
@@ -26,7 +27,9 @@ public class PostController {
     @GetMapping("list")
     public void readAll(String reset, Model model) {
         log.info("GET /post/list");
-        List<Post> list = postService.getPostList();
+        List<Post> list = postService.getPostList().stream()
+                .collect(Collectors.toList());
+
         System.out.println(list);
         list.stream().forEach(item-> System.out.println(item));
 
@@ -54,6 +57,7 @@ public class PostController {
     public void add(){
 
     }
+
     @PostMapping("/add")
     public ResponseEntity<?> add_post(
             @RequestParam("title") String title,
@@ -101,7 +105,10 @@ public class PostController {
         model.addAttribute("post",post);
         model.addAttribute("files",files);
     }
+
+
     //update
+
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update_post(
             @PathVariable("id") Long id,
@@ -144,27 +151,10 @@ public class PostController {
 
     //delete
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete_post(
-            @PathVariable("id") Long id,
-            Authentication authentication) {
-
-        // 유효성 검사 추가
-        if(id == null || authentication == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-
-        log.info("DELETE /post/delete " + id);
-
-        PrincipalDetails principal = (PrincipalDetails) authentication.getPrincipal();
-
-        // 게시글 작성자와 현재 로그인된 사용자가 동일한지 확인
-//        Post post = postService.getPost(id);
-//        if (principal == null || !post.getUsername().equals(principal.getUser().getId())) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-//        }
-
-        postService.deletePost(id);
-        return ResponseEntity.ok().build();
+    public String delete(@PathVariable Long id) {
+        System.out.println("GET /post/delete.."+id);
+        postService.delete(id);
+        return "redirect:/post/list";
     }
 
 

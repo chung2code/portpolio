@@ -33,4 +33,15 @@ public class Post extends TimeEntity {
 
     private String imageUrl;
 
+    private boolean isDeleted = false;
+
+
+    public boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void delete() {
+        this.isDeleted = true;
+    }
+
 }
