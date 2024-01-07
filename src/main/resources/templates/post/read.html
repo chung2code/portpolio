@@ -51,7 +51,7 @@
                       </span>
                     <span style="margin-right:10px ;
                       font-size:13px;">
-                        <button class="deletePost" data-id="${post.id}"   onclick="delete_btn(this)">삭제</button>
+                        <button class="deletePost" type="button"   onclick="deletePost()">삭제</button>
 
 
 
@@ -306,31 +306,33 @@ function closePop() {
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-<!--    $(document).ready(function(){-->
-<!--        $(".delete").click(function(e){-->
-<!--            e.preventDefault(); // 기본 동작 중단-->
+<!--<script src="/js/delete.js"></script>-->
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
 
-<!--            // 삭제 확인 메시지 표시-->
-<!--            if(!confirm("정말 삭제하시겠습니까?")) {-->
-<!--                return; // 'Cancel'을 클릭하면 함수를 종료-->
-<!--            }-->
+            // 게시글 삭제
+            function deletePost() {
+                const id = [[ ${post.id} ]];
 
+                if ( !confirm(id + '번 게시글을 삭제할까요?') ) {
+                    return false;
+                }
 
-<!--            var id = parseInt({id});-->
-<!--            $.ajax({-->
-<!--                url: '/post/delete/id' ,-->
-<!--                type: 'DELETE',-->
-<!--                success: function(result) {-->
-<!--                    // 요청이 성공적으로 완료된 경우-->
-<!--                    // 페이지를 새로 고침-->
-<!--                    location.reload();-->
-<!--                }-->
-<!--            });-->
-<!--        });-->
-<!--    });-->
+                const formHtml = `
+                    <form id="deleteForm" action="/post/delete.do" method="post">
+                        <input type="hidden" id="id" name="id" value="${id}" />
+                    </form>
+                `;
+                const doc = new DOMParser().parseFromString(formHtml, 'text/html');
+                const form = doc.body.firstChild;
+                document.body.append(form);
+                document.getElementById('deleteForm').submit();
+            }
 
-</script>
-<script src="/js/delete.js"></script>
+        /*]]>*/
+
+        </script>
+</th:block>
 </body>
 </html>

@@ -150,10 +150,10 @@ public class PostController {
 
 
     //delete
-    @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    @PostMapping("/delete.do")
+    public String deletePost(@RequestParam final Long id) {
         System.out.println("GET /post/delete.."+id);
-        postService.delete(id);
+        postService.deletePost(id);
         return "redirect:/post/list";
     }
 

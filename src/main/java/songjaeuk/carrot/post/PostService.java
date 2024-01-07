@@ -144,7 +144,7 @@ public class PostService {
     //delete
     @Transactional(rollbackFor = Exception.class)
 
-    public void delete(Long id) {
+    public void deletePost(Long id) {
         Optional<Post> post = postRepository.findById(id);
         if (post.isPresent()) { // 게시물이 존재하는지 확인
             postRepository.deleteById(id);
