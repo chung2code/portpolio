@@ -19,7 +19,7 @@ public class PostDto {
     private String place;
     private String price;
     private MultipartFile[] files;
-    private Long count;
+//    private int count;
 
 
 

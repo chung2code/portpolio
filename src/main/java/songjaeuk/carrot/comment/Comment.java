@@ -1,34 +1,43 @@
 //package songjaeuk.carrot.comment;
 //
-//import lombok.AllArgsConstructor;
-//import lombok.Builder;
-//import lombok.Data;
-//import lombok.NoArgsConstructor;
+//import lombok.*;
 //import songjaeuk.carrot.common.TimeEntity;
 //import songjaeuk.carrot.post.Post;
+//import songjaeuk.carrot.user.User;
+//import songjaeuk.carrot.user.UserDto;
+//
 //
 //import javax.persistence.*;
-//import java.time.LocalDateTime;
+//
 //
 //@Entity
 //@Builder
 //@NoArgsConstructor
 //@AllArgsConstructor
-//@Data
+//@Getter
 //public class Comment extends TimeEntity {
 //
 //    @Id
-//    @GeneratedValue(strategy= GenerationType.IDENTITY)
-//    @Column(name = "comment_id")
-//    private Long cno;
-//    @ManyToOne
-//    @JoinColumn(name = "pno",foreignKey = @ForeignKey(name = "FK_comment_post",
-//            foreignKeyDefinition = "FOREIGN KEY (pno) REFERENCES post(id) ON DELETE CASCADE ON UPDATE CASCADE") ) //FK설정\
-//    private Post post;
-//    private String username;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+//
+//    @Column(nullable = false, length =500)
 //    private String content;
-//    private Long likecount;       //좋아요 Count
-//    private String profileimage;
+//
+//    @ManyToOne
+//    @JoinColumn(name="postId")
+//    private Post post;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "userId")
+//    private UserDto user;
+//
+//
+//    public void save(Post post, UserDto user){
+//        this.post = post;
+//        this.user = user;
+//    }
+//
 //
 //
 //

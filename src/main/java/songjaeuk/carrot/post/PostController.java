@@ -102,6 +102,7 @@ public class PostController {
         System.out.println(post);
         List<String> files = post.getFiles();
         System.out.println(files);
+
         model.addAttribute("post",post);
         model.addAttribute("files",files);
     }
@@ -109,43 +110,43 @@ public class PostController {
 
     //update
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> update_post(
-            @PathVariable("id") Long id,
-            @RequestParam("title") String title,
-            @RequestParam("details") String details,
-            @RequestParam("price") String price,
-            @RequestParam("place") String place,
-            @RequestParam(value = "files", required = false) MultipartFile[] files,
-            Authentication authentication) throws IOException {
-
-        // 유효성 검사 추가
-        if(id == null || title == null || details == null || price == null || place == null || authentication == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-
-        log.info("PUT /post/update " + files);
-
-        PostDto dto = new PostDto();
-        dto.setTitle(title);
-        dto.setDetails(details);
-        dto.setPrice(price);
-        dto.setPlace(place);
-        dto.setFiles(files);
-        dto.setCreatedAt(LocalDateTime.now());
-
-        PrincipalDetails principal = (PrincipalDetails) authentication.getPrincipal();
-
-        // 게시글 작성자와 현재 로그인된 사용자가 동일한지 확인
-//        Post post = postService.getPost(id);
-//        if (principal == null || !post.getUsername().equals(principal.getUser().getId())) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+//    @PutMapping("/update/{id}")
+//    public ResponseEntity<?> update_post(
+//            @PathVariable("id") Long id,
+//            @RequestParam("title") String title,
+//            @RequestParam("details") String details,
+//            @RequestParam("price") String price,
+//            @RequestParam("place") String place,
+//            @RequestParam(value = "files", required = false) MultipartFile[] files,
+//            Authentication authentication) throws IOException {
+//
+//        // 유효성 검사 추가
+//        if(id == null || title == null || details == null || price == null || place == null || authentication == null) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 //        }
-
-        dto.setUsername(principal.getUsername());
-        postService.updatePost(id, dto);
-        return ResponseEntity.ok().build();
-    }
+//
+//        log.info("PUT /post/update " + files);
+//
+//        PostDto dto = new PostDto();
+//        dto.setTitle(title);
+//        dto.setDetails(details);
+//        dto.setPrice(price);
+//        dto.setPlace(place);
+//        dto.setFiles(files);
+//        dto.setCreatedAt(LocalDateTime.now());
+//
+//        PrincipalDetails principal = (PrincipalDetails) authentication.getPrincipal();
+//
+//        // 게시글 작성자와 현재 로그인된 사용자가 동일한지 확인
+////        Post post = postService.getPost(id);
+////        if (principal == null || !post.getUsername().equals(principal.getUser().getId())) {
+////            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+////        }
+//
+//        dto.setUsername(principal.getUsername());
+//        postService.updatePost(id, dto);
+//        return ResponseEntity.ok().build();
+//    }
 
 
 

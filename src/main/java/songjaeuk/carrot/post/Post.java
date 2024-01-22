@@ -1,6 +1,8 @@
 package songjaeuk.carrot.post;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+//import songjaeuk.carrot.comment.Comment;
 import songjaeuk.carrot.common.TimeEntity;
 
 
@@ -26,7 +28,7 @@ public class Post extends TimeEntity {
     private String place;
     private String price;
 
-    private Long count;
+//    private int count;
 
     @ElementCollection
     private List<String> files;
@@ -34,6 +36,11 @@ public class Post extends TimeEntity {
     private String imageUrl;
 
     private boolean isDeleted = false;
+
+//    @OrderBy("id desc")
+//    @JsonIgnoreProperties({"post"})
+//    @OneToMany(mappedBy = "post",fetch=FetchType.EAGER,cascade = CascadeType.REMOVE)
+//    private List<Comment> commentList;
 
 
     public boolean getIsDeleted() {
